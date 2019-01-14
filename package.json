@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/autumnchris/reading-list-reactjs/issues"
   },
-  "homepage": "https://autumnchris.github.io/reading-list-reactjs"
+  "homepage": "https://autumnchris.github.io/reading-list-reactjs",
+  "dependencies": {
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  }
 }
