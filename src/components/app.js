@@ -13,6 +13,8 @@ export default class App extends Component {
         <header>
           <h1>Build Your Reading List</h1>
         </header>
+        {/* FOOTER */}
+        <footer>Coded by <a href="https://autumnbullard-portfolio.herokuapp.com" target="_blank">Autumn Bullard</a></footer>
       </div>
     );
   }
