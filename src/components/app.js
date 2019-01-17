@@ -8,7 +8,12 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="body"></div>
+      <div className="body">
+        {/* HEADER */}
+        <header>
+          <h1>Build Your Reading List</h1>
+        </header>
+      </div>
     );
   }
 }
