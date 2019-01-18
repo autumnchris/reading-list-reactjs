@@ -4,4 +4,24 @@
 html {
   background: $dark-green;
   background: linear-gradient(to right, $dark-green, #2b7a88) fixed;
+  footer {
+    background: rgba(0, 0, 0, 0.1);
+    bottom: 0;
+    color: $white;
+    font-size: 0.8rem;
+    left: 0;
+    letter-spacing: 2px;
+    padding: 14px 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    width: 100%;
+    a,
+    a:visited,
+    a:hover,
+    a:active,
+    a:focus {
+      color: $light-green;
+    }
+  }
 }
