@@ -13,6 +13,10 @@ export default class App extends Component {
         <header>
           <h1>Build Your Reading List</h1>
         </header>
+        <main>
+          {/* ADD BOOK BUTTON */}
+          <button type="button" className="add-book"><span className="fas fa-plus"></span> Add Book</button>
+        </main>
         {/* FOOTER */}
         <footer>Coded by <a href="https://autumnbullard-portfolio.herokuapp.com" target="_blank">Autumn Bullard</a></footer>
       </div>
