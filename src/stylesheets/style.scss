@@ -37,6 +37,14 @@ html {
     max-width: 500px;
     padding-top: 20px;
     padding-bottom: 70px;
+    .add-book,
+    .add-book:hover,
+    .add-book:active,
+    .add-book:focus {
+      background: $light-green;
+      color: $dark-green;
+      margin: 20px 0;
+    }
   }
   footer {
     background: rgba(0, 0, 0, 0.1);
