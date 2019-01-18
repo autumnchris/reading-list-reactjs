@@ -1,9 +1,29 @@
 @import 'variables';
 @import 'reset';
 
+*:focus {
+  box-shadow: 0 0 3px 3px rgba(65, 180, 250, 0.8);
+  outline: none;
+}
+
 html {
   background: $dark-green;
   background: linear-gradient(to right, $dark-green, #2b7a88) fixed;
+  button,
+  button:hover,
+  button:active,
+  button:focus,
+  input[type=submit],
+  input[type=submit]:hover,
+  input[type=submit]:active,
+  input[type=submit]:focus,
+  input[type=button],
+  input[type=button]:hover,
+  input[type=button]:active,
+  input[type=button]:focus {
+    border-radius: 3px;
+    padding: 10px;
+  }
   h1 {
     color: $white;
     font-family: $heading-font;
