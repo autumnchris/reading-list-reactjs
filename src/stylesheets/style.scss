@@ -1,0 +1,7 @@
+@import 'variables';
+@import 'reset';
+
+html {
+  background: $dark-green;
+  background: linear-gradient(to right, $dark-green, #2b7a88) fixed;
+}
