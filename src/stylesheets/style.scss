@@ -45,6 +45,52 @@ html {
       color: $dark-green;
       margin: 20px 0;
     }
+    .main-card {
+      background: rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      .book-card {
+        background: $white;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        padding: 10px;
+        .row:first-child {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          h2 {
+            color: $dark-green;
+            font-size: 1rem;
+            line-height: 24px;
+            width: 85%;
+          }
+          .delete-book,
+          .delete-book:hover,
+          .delete-book:active,
+          .delete-book:focus {
+            align-self: flex-start;
+            background: $dark-green;
+            color: $light-green;
+            .fa-trash-alt {
+              pointer-events: none;
+            }
+          }
+        }
+        .row:last-child {
+          hr {
+            border-bottom: 1px solid $dark-green;
+            margin: 8px 0;
+          }
+          .author,
+          .pages {
+            margin: 10px 0;
+          }
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
   }
   footer {
     background: rgba(0, 0, 0, 0.1);
