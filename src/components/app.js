@@ -8,6 +8,15 @@ export default class App extends Component {
     this.state = {
       readingList: JSON.parse(localStorage.getItem('readingList')) || []
     };
+    this.toggleRead = this.toggleRead.bind(this);
+  }
+
+  toggleRead(event, index) {
+    let readingList = this.state.readingList;
+    if (!event.target.matches('input[type=checkbox]')) return;
+    readingList[index].read = !readingList[index].read;
+    this.setState({ readingList });
+    localStorage.setItem('readingList', JSON.stringify(readingList));
   }
 
   render() {
@@ -22,7 +31,7 @@ export default class App extends Component {
           <button type="button" className="add-book"><span className="fas fa-plus"></span> Add Book</button>
           <div className="main-card">
             {/* READING LIST */}
-            <ReadingList readingList={this.state.readingList} />
+            <ReadingList readingList={this.state.readingList} toggleRead={this.toggleRead} />
           </div>
         </main>
         {/* FOOTER */}
