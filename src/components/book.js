@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Book = ({ book, index, toggleRead }) => {
+const Book = ({ book, index, toggleRead, deleteBook }) => {
 
   return (
     <div className="book-card">
@@ -8,7 +8,7 @@ const Book = ({ book, index, toggleRead }) => {
         <h2>
           <cite>{book.title}</cite>
         </h2>
-        <button type="button" className="delete-book" aria-label="delete book" title="Delete">
+        <button type="button" className="delete-book" onClick={() => deleteBook(index)} aria-label="delete book" title="Delete">
           <span className="fa fa-trash-alt"></span>
         </button>
       </div>

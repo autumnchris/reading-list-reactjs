@@ -9,6 +9,7 @@ export default class App extends Component {
       readingList: JSON.parse(localStorage.getItem('readingList')) || []
     };
     this.toggleRead = this.toggleRead.bind(this);
+    this.deleteBook = this.deleteBook.bind(this);
   }
 
   toggleRead(event, index) {
@@ -17,6 +18,16 @@ export default class App extends Component {
     readingList[index].read = !readingList[index].read;
     this.setState({ readingList });
     localStorage.setItem('readingList', JSON.stringify(readingList));
+  }
+
+  deleteBook(index) {
+    let readingList = this.state.readingList;
+
+    if (confirm('Are you sure you want to remove this book from your reading list?')) {
+      readingList.splice(index, 1);
+      this.setState({ readingList });
+      localStorage.setItem('readingList', JSON.stringify(readingList));
+    }
   }
 
   render() {
@@ -31,7 +42,7 @@ export default class App extends Component {
           <button type="button" className="add-book"><span className="fas fa-plus"></span> Add Book</button>
           <div className="main-card">
             {/* READING LIST */}
-            <ReadingList readingList={this.state.readingList} toggleRead={this.toggleRead} />
+            <ReadingList readingList={this.state.readingList} toggleRead={this.toggleRead} deleteBook={this.deleteBook} />
           </div>
         </main>
         {/* FOOTER */}
