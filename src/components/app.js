@@ -6,7 +6,9 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      readingList: JSON.parse(localStorage.getItem('readingList')) || []
+      readingList: JSON.parse(localStorage.getItem('readingList')) || [],
+      readingListStyle: {display: 'none'},
+      noBooksStyle: {display: 'none'}
     };
     this.toggleRead = this.toggleRead.bind(this);
     this.deleteBook = this.deleteBook.bind(this);
@@ -30,6 +32,22 @@ export default class App extends Component {
     }
   }
 
+  componentDidMount() {
+
+    if (this.state.readingList.length === 0) {
+      this.setState({
+        readingListStyle: {display: 'none'},
+        noBooksStyle: {display: 'block'}
+      });
+    }
+    else {
+      this.setState({
+        readingListStyle: {display: 'block'},
+        noBooksStyle: {display: 'none'}
+      });
+    }
+  }
+
   render() {
     return (
       <div className="body">
@@ -42,7 +60,9 @@ export default class App extends Component {
           <button type="button" className="add-book"><span className="fas fa-plus"></span> Add Book</button>
           <div className="main-card">
             {/* READING LIST */}
-            <ReadingList readingList={this.state.readingList} toggleRead={this.toggleRead} deleteBook={this.deleteBook} />
+            <ReadingList readingList={this.state.readingList} toggleRead={this.toggleRead} deleteBook={this.deleteBook} style={this.state.readingListStyle} />
+            {/* NO BOOKS MESSAGE */}
+            <p className="no-books" style={this.state.noBooksStyle}>You currently have no books in your reading list. Click Add Book to get started.</p>
           </div>
         </main>
         {/* FOOTER */}
