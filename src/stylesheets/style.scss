@@ -6,6 +6,51 @@
   outline: none;
 }
 
+.check-label {
+  cursor: pointer;
+  max-width: 150px;
+  padding: 5px 5px 5px 25px;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  input[type=checkbox] {
+    opacity: 0;
+    position: absolute;
+  }
+  .checkmark {
+    background: $white;
+    border: 1px solid $dark-green;
+    height: 16px;
+    left: 0;
+    margin: 5px;
+    position: absolute;
+    top: 0;
+    width: 16px;
+    &:after {
+      border: solid $white;
+      border-width: 0 3px 3px 0;
+      content: "";
+      display: none;
+      height: 6px;
+      left: 4px;
+      position: absolute;
+      top: 1px;
+      width: 3px;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+  }
+  input:checked ~ .checkmark {
+    background: $dark-green;
+    &:after {
+      display: block;
+    }
+  }
+}
+
 html {
   background: $dark-green;
   background: linear-gradient(to right, $dark-green, #2b7a88) fixed;
@@ -78,6 +123,9 @@ html {
             text-align: right;
             label {
               margin-right: 5px;
+            }
+            .check-label {
+              margin: 0;
             }
             input[type=text] {
               border: 1px solid $dark-green;
