@@ -1,0 +1,290 @@
+html,
+body,
+header,
+main,
+footer,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+span,
+button,
+a,
+form,
+label,
+input,
+hr,
+p,
+cite {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-sizing: border-box;
+  color: #333;
+  font-family: "Fira Sans", Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  text-align: left; }
+
+html {
+  height: 100%; }
+
+body {
+  font-size: 0.9rem;
+  min-height: 100%;
+  padding: 0 20px;
+  position: relative; }
+
+a,
+a:visited,
+a:active,
+a:focus {
+  color: inherit;
+  letter-spacing: inherit;
+  text-decoration: none; }
+  a:hover,
+  a:visited:hover,
+  a:active:hover,
+  a:focus:hover {
+    text-decoration: underline; }
+
+span {
+  color: inherit;
+  letter-spacing: inherit; }
+
+button,
+button:hover,
+button:active,
+button:focus,
+input[type=submit],
+input[type=submit]:hover,
+input[type=submit]:active,
+input[type=submit]:focus,
+input[type=button],
+input[type=button]:hover,
+input[type=button]:active,
+input[type=button]:focus {
+  cursor: pointer; }
+
+cite {
+  color: inherit;
+  font-style: italic;
+  letter-spacing: inherit; }
+
+*:focus {
+  box-shadow: 0 0 3px 3px rgba(65, 180, 250, 0.8);
+  outline: none; }
+
+.check-label {
+  cursor: pointer;
+  max-width: 150px;
+  padding: 5px 5px 5px 25px;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+  .check-label input[type=checkbox] {
+    opacity: 0;
+    position: absolute; }
+  .check-label .checkmark {
+    background: #fff;
+    border: 1px solid #256874;
+    height: 16px;
+    left: 0;
+    margin: 5px;
+    position: absolute;
+    top: 0;
+    width: 16px; }
+    .check-label .checkmark:after {
+      border: solid #fff;
+      border-width: 0 3px 3px 0;
+      content: "";
+      display: none;
+      height: 6px;
+      left: 4px;
+      position: absolute;
+      top: 1px;
+      width: 3px;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg); }
+  .check-label input:checked ~ .checkmark {
+    background: #256874; }
+    .check-label input:checked ~ .checkmark:after {
+      display: block; }
+
+html {
+  background: #256874;
+  background: linear-gradient(to right, #256874, #2b7a88) fixed; }
+  html button,
+  html button:hover,
+  html button:active,
+  html button:focus,
+  html input[type=submit],
+  html input[type=submit]:hover,
+  html input[type=submit]:active,
+  html input[type=submit]:focus,
+  html input[type=button],
+  html input[type=button]:hover,
+  html input[type=button]:active,
+  html input[type=button]:focus {
+    border-radius: 3px;
+    padding: 10px; }
+  html h1 {
+    color: #fff;
+    font-family: Allan, "Fira Sans", Helvetica, Arial, sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 5px;
+    padding-top: 4%;
+    text-align: center; }
+  html main {
+    margin: auto;
+    max-width: 500px;
+    padding-top: 20px;
+    padding-bottom: 70px; }
+    html main .add-book,
+    html main .add-book:hover,
+    html main .add-book:active,
+    html main .add-book:focus {
+      background: #94ebd8;
+      color: #256874;
+      margin: 20px 0; }
+    html main #modal {
+      background: rgba(0, 0, 0, 0.75);
+      bottom: 0;
+      height: 100%;
+      left: 0;
+      overflow: auto;
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 100%;
+      z-index: 1; }
+      html main #modal .modal-content {
+        animation: slideIn 0.3s ease-out;
+        background: #fff;
+        margin: 10% auto;
+        max-width: 400px;
+        width: 70%; }
+        html main #modal .modal-content .modal-header {
+          background: #256874;
+          padding: 10px; }
+          html main #modal .modal-content .modal-header h2 {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 300; }
+        html main #modal .modal-content .modal-body {
+          padding: 10px; }
+          html main #modal .modal-content .modal-body .form-group {
+            margin: 10px;
+            text-align: right; }
+            html main #modal .modal-content .modal-body .form-group label {
+              margin-right: 5px; }
+            html main #modal .modal-content .modal-body .form-group .check-label {
+              margin: 0; }
+            html main #modal .modal-content .modal-body .form-group input[type=text] {
+              border: 1px solid #256874;
+              padding: 5px; }
+            html main #modal .modal-content .modal-body .form-group #pages-input {
+              max-width: 100px; }
+          html main #modal .modal-content .modal-body .error-message {
+            background: #fee6ea;
+            border: 1px solid #fecdd6;
+            border-radius: 3px;
+            color: #82031a;
+            line-height: 20px;
+            margin: 10px 0;
+            padding: 15px 10px;
+            text-align: center;
+            width: 100%; }
+          html main #modal .modal-content .modal-body .button-group {
+            margin: 10px;
+            text-align: right; }
+            html main #modal .modal-content .modal-body .button-group input[type=submit],
+            html main #modal .modal-content .modal-body .button-group input[type=submit]:hover,
+            html main #modal .modal-content .modal-body .button-group input[type=submit]:active,
+            html main #modal .modal-content .modal-body .button-group input[type=submit]:focus,
+            html main #modal .modal-content .modal-body .button-group input[type=button],
+            html main #modal .modal-content .modal-body .button-group input[type=button]:hover,
+            html main #modal .modal-content .modal-body .button-group input[type=button]:active,
+            html main #modal .modal-content .modal-body .button-group input[type=button]:focus {
+              background: #256874;
+              color: #94ebd8;
+              margin-top: 10px;
+              margin-left: 10px; }
+    html main .main-card {
+      background: rgba(0, 0, 0, 0.1);
+      padding: 10px; }
+      html main .main-card .book-card {
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        padding: 10px; }
+        html main .main-card .book-card .row:first-child {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between; }
+          html main .main-card .book-card .row:first-child h2 {
+            color: #256874;
+            font-size: 1rem;
+            line-height: 24px;
+            width: 85%; }
+          html main .main-card .book-card .row:first-child .delete-book,
+          html main .main-card .book-card .row:first-child .delete-book:hover,
+          html main .main-card .book-card .row:first-child .delete-book:active,
+          html main .main-card .book-card .row:first-child .delete-book:focus {
+            align-self: flex-start;
+            background: #256874;
+            color: #94ebd8; }
+            html main .main-card .book-card .row:first-child .delete-book .fa-trash-alt,
+            html main .main-card .book-card .row:first-child .delete-book:hover .fa-trash-alt,
+            html main .main-card .book-card .row:first-child .delete-book:active .fa-trash-alt,
+            html main .main-card .book-card .row:first-child .delete-book:focus .fa-trash-alt {
+              pointer-events: none; }
+        html main .main-card .book-card .row:last-child hr {
+          border-bottom: 1px solid #256874;
+          margin: 8px 0; }
+        html main .main-card .book-card .row:last-child .author,
+        html main .main-card .book-card .row:last-child .pages {
+          margin: 10px 0; }
+        html main .main-card .book-card:last-child {
+          margin-bottom: 0; }
+      html main .main-card .no-books {
+        color: #fff;
+        line-height: 20px;
+        padding: 10px;
+        text-align: center; }
+  html footer {
+    background: rgba(0, 0, 0, 0.1);
+    bottom: 0;
+    color: #fff;
+    font-size: 0.8rem;
+    left: 0;
+    letter-spacing: 2px;
+    padding: 14px 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    width: 100%; }
+    html footer a,
+    html footer a:visited,
+    html footer a:hover,
+    html footer a:active,
+    html footer a:focus {
+      color: #94ebd8; }
+
+@keyframes slideIn {
+  from {
+    margin-top: 0; }
+  to {
+    margin-top: 10%; } }
+
