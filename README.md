@@ -4,6 +4,15 @@ My project for the [Library assignment](https://www.theodinproject.com/courses/j
 
 ---
 
+## Built With
+* [React.js](https://reactjs.org)
+* [Sass](http://sass-lang.com)
+* [Webpack](https://webpack.js.org)
+* LocalStorage
+* [Babel](https://babeljs.io)
+* [Google Fonts](https://fonts.google.com)
+* [Font Awesome](https://fontawesome.com)
+
 ## Demo
 
 View project demo at [https://autumnchris.github.io/reading-list-reactjs](https://autumnchris.github.io/reading-list-reactjs).
