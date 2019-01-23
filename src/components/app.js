@@ -25,6 +25,37 @@ export default class App extends Component {
     });
   }
 
+  addNewBook(event) {
+    event.preventDefault();
+    let readingList = this.state.readingList;
+    let newBook;
+
+    if (isNaN(this.state.pagesInput) || this.state.pagesInput < 0) {
+      this.setState({
+        errorStyle: {display: 'block'}
+      });
+    }
+    else {
+      newBook = {
+        title: this.state.titleInput,
+        author: this.state.authorInput,
+        pages: this.state.pagesInput,
+        read: this.state.readInput
+      }
+      readingList.push(newBook);
+      this.setState({
+        readingList,
+        titleInput: '',
+        authorInput: '',
+        pagesInput: '',
+        readInput: false,
+        errorStyle: {display: 'none'}
+      });
+      this.closeModal();
+      localStorage.setItem('readingList', JSON.stringify(readingList));
+    }
+  }
+
   toggleRead(event, index) {
     let readingList = this.state.readingList;
     if (!event.target.matches('input[type=checkbox]')) return;
@@ -81,7 +112,7 @@ export default class App extends Component {
                 <h2>Add New Book</h2>
               </div>
               <div className="modal-body">
-                <form className="new-book">
+                <form className="new-book" onSubmit={(event) => this.addNewBook(event)}>
                   <div className="form-group">
                     <label htmlFor="title-input">Title:</label>
                     <input type="text" name="titleInput" onChange={(event) => this.handleChange(event)} value={this.state.titleInput} id="title-input" required />
