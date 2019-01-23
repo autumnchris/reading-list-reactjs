@@ -4,6 +4,10 @@ My project for the [Library assignment](https://www.theodinproject.com/courses/j
 
 ---
 
+## Demo
+
+View project demo at [https://autumnchris.github.io/reading-list-reactjs](https://autumnchris.github.io/reading-list-reactjs).
+
 ## Installation
 
 ```
