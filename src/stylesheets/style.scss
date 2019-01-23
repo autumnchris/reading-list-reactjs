@@ -87,6 +87,17 @@ html {
               max-width: 100px;
             }
           }
+          .error-message {
+            background: hsl(349, 96%, 95%);
+            border: 1px solid hsl(349, 96%, 90%);
+            border-radius: 3px;
+            color: hsl(349, 96%, 26%);
+            line-height: 20px;
+            margin: 10px 0;
+            padding: 15px 10px;
+            text-align: center;
+            width: 100%;
+          }
           .button-group {
             margin: 10px;
             text-align: right;

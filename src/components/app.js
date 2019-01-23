@@ -100,6 +100,8 @@ export default class App extends Component {
                       <span className="checkmark" tabIndex="0"></span>
                     </label>
                   </div>
+                  {/* MODAL ERROR MESSAGE */}
+                  <p className="message error-message" style={this.state.errorStyle}><span className="fa fa-exclamation-circle fa-lg fa-fw"></span> Number of Pages must be a positive integer.</p>
                   <div className="button-group">
                     <input type="submit" value="Add" />
                     <input type="button" className="cancel" value="Cancel" onClick={() => this.closeModal()} />
