@@ -2,7 +2,7 @@
 @import 'reset';
 
 *:focus {
-  box-shadow: 0 0 3px 3px rgba(65, 180, 250, 0.8);
+  box-shadow: 0 0 3px 3px hsla(203, 95%, 62%, 0.8);
   outline: none;
 }
 
@@ -20,8 +20,8 @@
     position: absolute;
   }
   .checkmark {
-    background: $white;
-    border: 1px solid $dark-green;
+    background: change-color($black, $lightness: 100%);
+    border: 1px solid $teal;
     height: 16px;
     left: 0;
     margin: 5px;
@@ -29,7 +29,7 @@
     top: 0;
     width: 16px;
     &:after {
-      border: solid $white;
+      border: solid change-color($black, $lightness: 100%);
       border-width: 0 3px 3px 0;
       content: "";
       display: none;
@@ -44,7 +44,7 @@
     }
   }
   input:checked ~ .checkmark {
-    background: $dark-green;
+    background: $teal;
     &:after {
       display: block;
     }
@@ -52,8 +52,8 @@
 }
 
 html {
-  background: $dark-green;
-  background: linear-gradient(to right, $dark-green, #2b7a88) fixed;
+  background: $teal;
+  background: linear-gradient(to right, change-color($teal, $lightness: 15%), change-color($teal, $lightness: 30%)) fixed;
   button,
   button:hover,
   button:active,
@@ -70,7 +70,7 @@ html {
     padding: 10px;
   }
   h1 {
-    color: $white;
+    color: change-color($black, $lightness: 100%);
     font-family: $heading-font;
     font-size: 1.8rem;
     letter-spacing: 5px;
@@ -86,12 +86,12 @@ html {
     .add-book:hover,
     .add-book:active,
     .add-book:focus {
-      background: $light-green;
-      color: $dark-green;
+      background: change-color($teal, $lightness: 82%);
+      color: $teal;
       margin: 20px 0;
     }
     #modal {
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba($black, 0.75);
       bottom: 0;
       height: 100%;
       left: 0;
@@ -103,15 +103,15 @@ html {
       z-index: 1;
       .modal-content {
         animation: slideIn 0.3s ease-out;
-        background: $white;
+        background: change-color($black, $lightness: 100%);
         margin: 10% auto;
         max-width: 400px;
         width: 70%;
         .modal-header {
-          background: $dark-green;
+          background: $teal;
           padding: 10px;
           h2 {
-            color: $white;
+            color: change-color($black, $lightness: 100%);
             font-size: 1.1rem;
             font-weight: 300;
           }
@@ -128,7 +128,7 @@ html {
               margin: 0;
             }
             input[type=text] {
-              border: 1px solid $dark-green;
+              border: 1px solid $teal;
               padding: 5px;
             }
             #pages-input {
@@ -136,10 +136,10 @@ html {
             }
           }
           .error-message {
-            background: hsl(349, 96%, 95%);
-            border: 1px solid hsl(349, 96%, 90%);
+            background: change-color($error-red, $lightness: 95%);
+            border: 1px solid change-color($error-red, $lightness: 90%);
             border-radius: 3px;
-            color: hsl(349, 96%, 26%);
+            color: $error-red;
             line-height: 20px;
             margin: 10px 0;
             padding: 15px 10px;
@@ -157,8 +157,8 @@ html {
             input[type=button]:hover,
             input[type=button]:active,
             input[type=button]:focus {
-              background: $dark-green;
-              color: $light-green;
+              background: $teal;
+              color: change-color($teal, $lightness: 82%);
               margin-top: 10px;
               margin-left: 10px;
             }
@@ -167,10 +167,10 @@ html {
       }
     }
     .main-card {
-      background: rgba(0, 0, 0, 0.1);
+      background: rgba($black, 0.15);
       padding: 10px;
       .book-card {
-        background: $white;
+        background: change-color($black, $lightness: 100%);
         display: flex;
         flex-direction: column;
         margin-bottom: 10px;
@@ -180,7 +180,7 @@ html {
           flex-direction: row;
           justify-content: space-between;
           h2 {
-            color: $dark-green;
+            color: $teal;
             font-size: 1rem;
             line-height: 24px;
             width: 85%;
@@ -190,8 +190,8 @@ html {
           .delete-book:active,
           .delete-book:focus {
             align-self: flex-start;
-            background: $dark-green;
-            color: $light-green;
+            background: $teal;
+            color: change-color($teal, $lightness: 82%);
             .fa-trash-alt {
               pointer-events: none;
             }
@@ -199,7 +199,7 @@ html {
         }
         .row:last-child {
           hr {
-            border-bottom: 1px solid $dark-green;
+            border-bottom: 1px solid $teal;
             margin: 8px 0;
           }
           .author,
@@ -212,7 +212,7 @@ html {
         }
       }
       .no-books {
-        color: $white;
+        color: change-color($black, $lightness: 100%);
         line-height: 20px;
         padding: 10px;
         text-align: center;
@@ -220,9 +220,9 @@ html {
     }
   }
   footer {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba($black, 0.15);
     bottom: 0;
-    color: $white;
+    color: change-color($black, $lightness: 100%);
     font-size: 0.8rem;
     left: 0;
     letter-spacing: 2px;
@@ -236,7 +236,7 @@ html {
     a:hover,
     a:active,
     a:focus {
-      color: $light-green;
+      color: change-color($teal, $lightness: 82%);
     }
   }
 }

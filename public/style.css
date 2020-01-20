@@ -16,6 +16,8 @@ a,
 form,
 label,
 input,
+select,
+option,
 hr,
 p,
 cite {
@@ -23,7 +25,7 @@ cite {
   border: 0;
   border-radius: 0;
   box-sizing: border-box;
-  color: #333;
+  color: #333333;
   font-family: "Fira Sans", Helvetica, Arial, sans-serif;
   font-size: 100%;
   font-weight: 400;
@@ -70,7 +72,8 @@ input[type=submit]:focus,
 input[type=button],
 input[type=button]:hover,
 input[type=button]:active,
-input[type=button]:focus {
+input[type=button]:focus,
+select {
   cursor: pointer; }
 
 cite {
@@ -79,7 +82,7 @@ cite {
   letter-spacing: inherit; }
 
 *:focus {
-  box-shadow: 0 0 3px 3px rgba(65, 180, 250, 0.8);
+  box-shadow: 0 0 3px 3px rgba(66, 180, 250, 0.8);
   outline: none; }
 
 .check-label {
@@ -95,8 +98,8 @@ cite {
     opacity: 0;
     position: absolute; }
   .check-label .checkmark {
-    background: #fff;
-    border: 1px solid #256874;
+    background: white;
+    border: 1px solid #12535e;
     height: 16px;
     left: 0;
     margin: 5px;
@@ -104,7 +107,7 @@ cite {
     top: 0;
     width: 16px; }
     .check-label .checkmark:after {
-      border: solid #fff;
+      border: solid white;
       border-width: 0 3px 3px 0;
       content: "";
       display: none;
@@ -117,13 +120,13 @@ cite {
       -ms-transform: rotate(45deg);
       transform: rotate(45deg); }
   .check-label input:checked ~ .checkmark {
-    background: #256874; }
+    background: #12535e; }
     .check-label input:checked ~ .checkmark:after {
       display: block; }
 
 html {
-  background: #256874;
-  background: linear-gradient(to right, #256874, #2b7a88) fixed; }
+  background: #12535e;
+  background: linear-gradient(to right, #0c3840, #187181) fixed; }
   html button,
   html button:hover,
   html button:active,
@@ -139,7 +142,7 @@ html {
     border-radius: 3px;
     padding: 10px; }
   html h1 {
-    color: #fff;
+    color: white;
     font-family: Allan, "Fira Sans", Helvetica, Arial, sans-serif;
     font-size: 1.8rem;
     letter-spacing: 5px;
@@ -154,8 +157,8 @@ html {
     html main .add-book:hover,
     html main .add-book:active,
     html main .add-book:focus {
-      background: #94ebd8;
-      color: #256874;
+      background: #b2e7f0;
+      color: #12535e;
       margin: 20px 0; }
     html main #modal {
       background: rgba(0, 0, 0, 0.75);
@@ -170,15 +173,15 @@ html {
       z-index: 1; }
       html main #modal .modal-content {
         animation: slideIn 0.3s ease-out;
-        background: #fff;
+        background: white;
         margin: 10% auto;
         max-width: 400px;
         width: 70%; }
         html main #modal .modal-content .modal-header {
-          background: #256874;
+          background: #12535e;
           padding: 10px; }
           html main #modal .modal-content .modal-header h2 {
-            color: #fff;
+            color: white;
             font-size: 1.1rem;
             font-weight: 300; }
         html main #modal .modal-content .modal-body {
@@ -191,7 +194,7 @@ html {
             html main #modal .modal-content .modal-body .form-group .check-label {
               margin: 0; }
             html main #modal .modal-content .modal-body .form-group input[type=text] {
-              border: 1px solid #256874;
+              border: 1px solid #12535e;
               padding: 5px; }
             html main #modal .modal-content .modal-body .form-group #pages-input {
               max-width: 100px; }
@@ -216,15 +219,15 @@ html {
             html main #modal .modal-content .modal-body .button-group input[type=button]:hover,
             html main #modal .modal-content .modal-body .button-group input[type=button]:active,
             html main #modal .modal-content .modal-body .button-group input[type=button]:focus {
-              background: #256874;
-              color: #94ebd8;
+              background: #12535e;
+              color: #b2e7f0;
               margin-top: 10px;
               margin-left: 10px; }
     html main .main-card {
-      background: rgba(0, 0, 0, 0.1);
+      background: rgba(0, 0, 0, 0.15);
       padding: 10px; }
       html main .main-card .book-card {
-        background: #fff;
+        background: white;
         display: flex;
         flex-direction: column;
         margin-bottom: 10px;
@@ -234,7 +237,7 @@ html {
           flex-direction: row;
           justify-content: space-between; }
           html main .main-card .book-card .row:first-child h2 {
-            color: #256874;
+            color: #12535e;
             font-size: 1rem;
             line-height: 24px;
             width: 85%; }
@@ -243,15 +246,15 @@ html {
           html main .main-card .book-card .row:first-child .delete-book:active,
           html main .main-card .book-card .row:first-child .delete-book:focus {
             align-self: flex-start;
-            background: #256874;
-            color: #94ebd8; }
+            background: #12535e;
+            color: #b2e7f0; }
             html main .main-card .book-card .row:first-child .delete-book .fa-trash-alt,
             html main .main-card .book-card .row:first-child .delete-book:hover .fa-trash-alt,
             html main .main-card .book-card .row:first-child .delete-book:active .fa-trash-alt,
             html main .main-card .book-card .row:first-child .delete-book:focus .fa-trash-alt {
               pointer-events: none; }
         html main .main-card .book-card .row:last-child hr {
-          border-bottom: 1px solid #256874;
+          border-bottom: 1px solid #12535e;
           margin: 8px 0; }
         html main .main-card .book-card .row:last-child .author,
         html main .main-card .book-card .row:last-child .pages {
@@ -259,14 +262,14 @@ html {
         html main .main-card .book-card:last-child {
           margin-bottom: 0; }
       html main .main-card .no-books {
-        color: #fff;
+        color: white;
         line-height: 20px;
         padding: 10px;
         text-align: center; }
   html footer {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.15);
     bottom: 0;
-    color: #fff;
+    color: white;
     font-size: 0.8rem;
     left: 0;
     letter-spacing: 2px;
@@ -280,7 +283,7 @@ html {
     html footer a:hover,
     html footer a:active,
     html footer a:focus {
-      color: #94ebd8; }
+      color: #b2e7f0; }
 
 @keyframes slideIn {
   from {
