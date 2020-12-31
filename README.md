@@ -10,6 +10,7 @@ My project for the [Library assignment](https://www.theodinproject.com/courses/j
 * [Webpack](https://webpack.js.org)
 * LocalStorage
 * [Babel](https://babeljs.io)
+* [Normalize.css](https://necolas.github.io/normalize.css)
 * [Google Fonts](https://fonts.google.com)
 * [Font Awesome](https://fontawesome.com)
 

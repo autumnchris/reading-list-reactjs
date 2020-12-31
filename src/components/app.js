@@ -1,21 +1,36 @@
-import React, { Component } from 'react';
-import MainContent from './main-content';
+import React from 'react';
+import BookFormModal from './book-form-modal';
+import ReadingList from './reading-list';
+import bgImage from '.././images/background-image.jpg';
 
-export default class App extends Component {
+class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      readingList: JSON.parse(localStorage.getItem('readingList')) || [],
-      titleInput: '',
-      authorInput: '',
-      pagesInput: '',
-      readInput: false,
-      modalStyle: {display: 'none'},
-      errorStyle: {display: 'none'}
+      titleValue: '',
+      authorValue: '',
+      pagesValue: '',
+      readValue: false,
+      readingList: this.renderReadingList(),
+      isModalOpen: false,
+      bookFormError: false,
+      errorMessage: ''
     };
-    this.toggleRead = this.toggleRead.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.addNewBook = this.addNewBook.bind(this);
     this.deleteBook = this.deleteBook.bind(this);
+    this.toggleRead = this.toggleRead.bind(this);
+    this.showModal = this.showModal.bind(this);
+  }
+
+  renderReadingList(readingList) {
+
+    if (readingList) {
+      this.setState({ readingList });
+      localStorage.setItem('readingList', JSON.stringify(readingList));
+    }
+    return JSON.parse(localStorage.getItem('readingList')) || [];
   }
 
   handleChange(event) {
@@ -25,130 +40,104 @@ export default class App extends Component {
     });
   }
 
-  addNewBook(event) {
+  addNewBook(event, titleValue, authorValue, pagesValue, readValue, readingList) {
     event.preventDefault();
-    let readingList = this.state.readingList;
-    let newBook;
 
-    if (isNaN(this.state.pagesInput) || this.state.pagesInput < 0) {
+    if (!titleValue) {
       this.setState({
-        errorStyle: {display: 'block'}
+        bookFormError: true,
+        errorMessage: 'A book title is required to add a new book.'
+      });
+    }
+    else if (!authorValue) {
+      this.setState({
+        bookFormError: true,
+        errorMessage: 'An author is required to add a new book.'
+      });
+    }
+    else if (!pagesValue) {
+      this.setState({
+        bookFormError: true,
+        errorMessage: 'The number of pages is required to add a new book.'
+      });
+    }
+    else if (isNaN(pagesValue) || pagesValue < 0) {
+      this.setState({
+        bookFormError: true,
+        errorMessage: 'The number of pages must be a number greater than 0.'
       });
     }
     else {
-      newBook = {
-        title: this.state.titleInput,
-        author: this.state.authorInput,
-        pages: this.state.pagesInput,
-        read: this.state.readInput
-      }
-      readingList.push(newBook);
-      this.setState({
-        readingList,
-        titleInput: '',
-        authorInput: '',
-        pagesInput: '',
-        readInput: false,
-        errorStyle: {display: 'none'}
+      readingList.push({
+        titleValue,
+        authorValue,
+        pagesValue,
+        readValue
       });
-      this.closeModal();
-      localStorage.setItem('readingList', JSON.stringify(readingList));
+      this.renderReadingList(readingList);
+      this.showModal(false);
+      this.setState({
+        titleValue: '',
+        authorValue: '',
+        pagesValue: '',
+        readValue: false,
+      });
     }
   }
 
-  toggleRead(event, index) {
-    let readingList = this.state.readingList;
-    if (!event.target.matches('input[type=checkbox]')) return;
-    readingList[index].read = !readingList[index].read;
-    this.setState({ readingList });
-    localStorage.setItem('readingList', JSON.stringify(readingList));
-  }
-
-  deleteBook(index) {
-    let readingList = this.state.readingList;
+  deleteBook(readingList, index) {
 
     if (confirm('Are you sure you want to remove this book from your reading list?')) {
       readingList.splice(index, 1);
-      this.setState({ readingList });
-      localStorage.setItem('readingList', JSON.stringify(readingList));
+      this.renderReadingList(readingList);
     }
   }
 
-  openModal() {
-    this.setState({
-      modalStyle: {display: 'block'}
-    });
+  toggleRead(event, readingList, index) {
+
+    if (!event.target.matches('input[type=checkbox]')) return;
+    readingList[index].readValue = !readingList[index].readValue;
+    this.renderReadingList(readingList);
   }
 
-  closeModal() {
+  showModal(status) {
     this.setState({
-      modalStyle: {display: 'none'}
+      isModalOpen: status,
+      bookFormError: false
     });
   }
 
   componentDidMount() {
-    window.addEventListener('click', (event) => {
+    window.addEventListener('click', event => {
 
       if (event.target.id === 'modal') {
-        this.closeModal();
+        this.showModal(false);
       }
     });
   }
 
   render() {
     return (
-      <div className="body">
-        {/* HEADER */}
+      <React.Fragment>
         <header>
+          <div className="bg-image" style={{backgroundImage: `url(${bgImage})`}}></div>
           <h1>Build Your Reading List</h1>
         </header>
         <main>
-          {/* ADD BOOK BUTTON */}
-          <button type="button" className="add-book" onClick={() => this.openModal()}><span className="fas fa-plus"></span> Add Book</button>
-          {/* ADD BOOK MODAL */}
-          <div id="modal" style={this.state.modalStyle}>
-            <div className="modal-content">
-              <div className="modal-header">
-                <h2>Add New Book</h2>
-              </div>
-              <div className="modal-body">
-                <form className="new-book" onSubmit={(event) => this.addNewBook(event)}>
-                  <div className="form-group">
-                    <label htmlFor="title-input">Title:</label>
-                    <input type="text" name="titleInput" onChange={(event) => this.handleChange(event)} value={this.state.titleInput} id="title-input" required />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="author-input">Author:</label>
-                    <input type="text" name="authorInput" onChange={(event) => this.handleChange(event)} value={this.state.authorInput} id="author-input" required />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="pages-input">Number of Pages:</label>
-                    <input type="text" name="pagesInput" onChange={(event) => this.handleChange(event)} value={this.state.pagesInput} id="pages-input" required />
-                  </div>
-                  <div className="form-group">
-                    <label className="check-label" htmlFor="read-input">Read
-                      <input type="checkbox" name="readInput" onChange={(event) => this.handleChange(event)} tabIndex="-1" id="read-input" checked={this.state.readInput} />
-                      <span className="checkmark" tabIndex="0"></span>
-                    </label>
-                  </div>
-                  {/* MODAL ERROR MESSAGE */}
-                  <p className="message error-message" style={this.state.errorStyle}><span className="fa fa-exclamation-circle fa-lg fa-fw"></span> Number of Pages must be a positive integer.</p>
-                  <div className="button-group">
-                    <input type="submit" value="Add" />
-                    <input type="button" className="cancel" value="Cancel" onClick={() => this.closeModal()} />
-                  </div>
-                </form>
-              </div>
+          <div className="reading-list-container">
+            <div className="col sidebar">
+              <button type="button" className="button add-book-button" onClick={() => this.showModal(true)}><span className="fas fa-plus"></span> Add Book</button>
+            </div>
+            <div className="col reading-list-content">
+              <ReadingList readingList={this.state.readingList} deleteBook={this.deleteBook} toggleRead={this.toggleRead} />
             </div>
           </div>
-          {/* READING LIST */}
-          <div className="main-card">
-            <MainContent readingList={this.state.readingList} toggleRead={this.toggleRead} deleteBook={this.deleteBook} />
-          </div>
+          {this.state.isModalOpen ? <BookFormModal titleValue={this.state.titleValue} authorValue={this.state.authorValue} pagesValue={this.state.pagesValue} readValue={this.state.readValue} bookFormError={this.state.bookFormError} errorMessage={this.state.errorMessage} readingList={this.state.readingList} handleChange={this.handleChange} addNewBook={this.addNewBook} showModal={this.showModal} /> : null}
         </main>
-        {/* FOOTER */}
         <footer>Created by <a href="https://autumnbullard-portfolio.herokuapp.com" target="_blank">Autumn Bullard</a> &copy; {new Date().getFullYear()}</footer>
-      </div>
+      </React.Fragment>
     );
   }
 }
+
+export default App;

@@ -1,17 +1,14 @@
 import React from 'react';
 import Book from './book';
 
-const ReadingList = ({ readingList, toggleRead, deleteBook }) => {
+const ReadingList = ({ readingList, deleteBook, toggleRead }) => {
 
-  const Books = readingList.sort((a, b) => {
-    return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
-  }).map((book, index) => {
-    return <Book key={index} book={book} index={index} toggleRead={toggleRead} deleteBook={deleteBook} />;
-  });
-
-  return (
-    <div className="reading-list">{Books}</div>
-  );
+  if (readingList.length === 0) {
+    return <p className="message info-message"><span className="fa fa-info-circle fa-lg fa-fw"></span> You currently have no books in your reading list. Click the Add Book button to get started.</p>;
+  }
+  else {
+    return <React.Fragment>{readingList.sort((a, b) => a.titleValue.toLowerCase().localeCompare(b.titleValue.toLowerCase())).map((book, index) => <Book key={index} book={book} index={index} readingList={readingList} deleteBook={deleteBook} toggleRead={toggleRead} />)}</React.Fragment>;
+  }
 }
 
 export default ReadingList;
