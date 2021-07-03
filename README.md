@@ -1,6 +1,8 @@
 # Reading List (React.js)
 
-My project for the [Library assignment](https://www.theodinproject.com/courses/javascript/lessons/library) as part of the curriculum for the [JavaScript course](https://www.theodinproject.com/courses/javascript) on [The Odin Project](https://www.theodinproject.com). Built with React.js.
+A front-end web app that uses LocalStorage to store and present entered data for the user's personal reading list. Built with React.js.
+
+Inspired by the [Library assignment](https://www.theodinproject.com/courses/javascript/lessons/library) as part of the curriculum for the [JavaScript course](https://www.theodinproject.com/courses/javascript) on [The Odin Project](https://www.theodinproject.com).
 
 ---
 
