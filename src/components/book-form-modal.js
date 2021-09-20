@@ -7,18 +7,18 @@ const BookFormModal = ({ titleValue, authorValue, pagesValue, readValue, bookFor
       <div className="modal-content">
         <div className="modal-header">Add New Book</div>
         <div className="modal-body">
-          <form className="new-book-form" onSubmit={(event) => addNewBook(event, titleValue, authorValue, pagesValue, readValue, readingList)}>
+          <form className="new-book-form" onSubmit={(event) => addNewBook(event, titleValue, authorValue, pagesValue, readValue, readingList)} noValidate>
             <div className="form-group">
               <label htmlFor="title-value">Title</label>
-              <input type="text" className="title-value" name="titleValue" onChange={(event) => handleChange(event)} value={titleValue} id="title-value" required />
+              <input type="text" className="title-value" name="titleValue" onChange={(event) => handleChange(event)} value={titleValue} id="title-value" />
             </div>
             <div className="form-group">
               <label htmlFor="author-value">Author</label>
-              <input type="text" className="author-value" name="authorValue" onChange={(event) => handleChange(event)} value={authorValue} id="author-value" required />
+              <input type="text" className="author-value" name="authorValue" onChange={(event) => handleChange(event)} value={authorValue} id="author-value" />
             </div>
             <div className="form-group">
               <label htmlFor="pages-value">Number of Pages</label>
-              <input type="text" className="pages-value" name="pagesValue" onChange={(event) => handleChange(event)} value={pagesValue} id="pages-value" required />
+              <input type="text" className="pages-value" name="pagesValue" onChange={(event) => handleChange(event)} value={pagesValue} id="pages-value" />
             </div>
             <div className="form-group">
               <label className="check-label" htmlFor="read-value">Read

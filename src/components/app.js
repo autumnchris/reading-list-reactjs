@@ -43,19 +43,19 @@ class App extends React.Component {
   addNewBook(event, titleValue, authorValue, pagesValue, readValue, readingList) {
     event.preventDefault();
 
-    if (!titleValue) {
+    if (!titleValue.trim()) {
       this.setState({
         bookFormError: true,
         errorMessage: 'A book title is required to add a new book.'
       });
     }
-    else if (!authorValue) {
+    else if (!authorValue.trim()) {
       this.setState({
         bookFormError: true,
         errorMessage: 'An author is required to add a new book.'
       });
     }
-    else if (!pagesValue) {
+    else if (!pagesValue.trim()) {
       this.setState({
         bookFormError: true,
         errorMessage: 'The number of pages is required to add a new book.'
