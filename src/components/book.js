@@ -6,14 +6,14 @@ const Book = ({ book, index, readingList, deleteBook, toggleRead }) => {
     <div className="book-card">
       <div className="row">
         <div className="title">{book.titleValue}</div>
-        <button type="button" className="button delete-book-button" onClick={() => deleteBook(readingList, index)}  aria-label="delete book" title="Delete">
+        <button type="button" className="button delete-book-button" onClick={() => deleteBook(readingList, index)} aria-label="delete book" title="Delete">
           <span className="fa fa-trash-alt fa-sm delete-icon"></span>
         </button>
       </div>
       <div className="row">
         <div className="book-info author"><span className="book-info-label">by</span> {book.authorValue}</div>
         <div className="book-info pages"><span className="book-info-label">Pages</span> {book.pagesValue}</div>
-        <form>
+        <form noValidate>
           <div className="form-group">
             <label className="check-label" htmlFor={`read-${index}`}>Read
               <input type="checkbox" name="readValue" onChange={(event) => toggleRead(event, readingList, index)} tabIndex="-1" id={`read-${index}`} checked={book.readValue} />
