@@ -67,7 +67,7 @@ const App = () => {
         </div>
         {modalVisibility ? <BookFormModal setModalVisibility={setModalVisibility} bookFormData={{ ...bookFormData }} setBookFormData={setBookFormData} addNewBook={addNewBook} /> : null}
       </main>
-      <footer>Created by <a href="https://autumnbullard-portfolio.herokuapp.com" target="_blank">Autumn Bullard</a> &copy; {new Date().getFullYear()}</footer>
+      <footer>Created by <a href="https://autumnchris.github.io/portfolio" target="_blank">Autumn Bullard</a> &copy; {new Date().getFullYear()}</footer>
     </React.Fragment>
   );
 }
