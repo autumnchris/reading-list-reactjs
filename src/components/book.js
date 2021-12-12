@@ -17,7 +17,7 @@ const Book = ({ book, index, readingList, deleteBook, toggleRead }) => {
           <div className="form-group">
             <label className="check-label" htmlFor={`read-${index}`}>Read
               <input type="checkbox" name="readValue" onChange={(event) => toggleRead(event, readingList, index)} tabIndex="-1" id={`read-${index}`} checked={book.readValue} />
-              <span className="checkmark" tabIndex="0"></span>
+              <span className="checkmark" tabIndex="0" onKeyDown={(event) => toggleRead(event, readingList, index)}></span>
             </label>
           </div>
         </form>

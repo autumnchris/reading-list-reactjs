@@ -13,6 +13,20 @@ const BookFormModal = ({ setModalVisibility, bookFormData, setBookFormData, addN
     });
   }
 
+  function handleKeyDown(event, id) {
+    let checkboxValue = document.getElementById(id).checked;
+    
+    if (event.keyCode === 32) {
+      checkboxValue = !checkboxValue;
+      setBookFormData(prevBookFormData => {
+        return {
+          ...prevBookFormData,
+          'readValue': checkboxValue
+        };
+      });
+    }
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -55,7 +69,7 @@ const BookFormModal = ({ setModalVisibility, bookFormData, setBookFormData, addN
             <div className="form-group">
               <label className="check-label" htmlFor="read-value">Read
                 <input type="checkbox" name="readValue" onChange={(event) => handleChange(event)} tabIndex="-1" id="read-value" checked={bookFormData.readValue} />
-                <span className="checkmark" tabIndex="0"></span>
+                <span className="checkmark" tabIndex="0" onKeyDown={(event) => handleKeyDown(event, 'read-value')}></span>
               </label>
             </div>
             <div className="button-group">

@@ -45,7 +45,8 @@ const App = () => {
   }
 
   function toggleRead(event, currentReadingList, index) { 
-    if (!event.target.matches('input[type=checkbox]')) return;
+    if (event.type === 'change' && !event.target.matches('input[type=checkbox]')) return;
+    if (event.keyCode === 32) event.preventDefault();
     currentReadingList[index].readValue = !currentReadingList[index].readValue;
     renderReadingList(currentReadingList);
   }
