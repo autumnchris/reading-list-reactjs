@@ -17,6 +17,7 @@ const BookFormModal = ({ setModalVisibility, bookFormData, setBookFormData, addN
     let checkboxValue = document.getElementById(id).checked;
     
     if (event.keyCode === 32) {
+      event.preventDefault();
       checkboxValue = !checkboxValue;
       setBookFormData(prevBookFormData => {
         return {
