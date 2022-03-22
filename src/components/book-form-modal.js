@@ -30,21 +30,27 @@ const BookFormModal = ({ setModalVisibility, bookFormData, setBookFormData, addN
 
   function handleSubmit(event) {
     event.preventDefault();
+    const newBook = {
+      titleValue: bookFormData.titleValue.trim(),
+      authorValue: bookFormData.authorValue.trim(),
+      pagesValue: bookFormData.pagesValue.trim(),
+      readValue: bookFormData.readValue
+    };
 
-    if (!bookFormData.titleValue.trim()) {
+    if (!newBook.titleValue) {
       setBookFormErrorMessage('A book title is required to add a new book.');
     }
-    else if (!bookFormData.authorValue.trim()) {
+    else if (!newBook.authorValue) {
       setBookFormErrorMessage('An author is required to add a new book.');
     }
-    else if (!bookFormData.pagesValue.trim()) {
+    else if (!newBook.pagesValue) {
       setBookFormErrorMessage('The number of pages is required to add a new book.');
     }
-    else if (isNaN(bookFormData.pagesValue) || bookFormData.pagesValue <= 0) {
+    else if (isNaN(newBook.pagesValue) || newBook.pagesValue <= 0) {
       setBookFormErrorMessage('The number of pages must be a number greater than 0.');
     }
     else {
-      addNewBook(bookFormData);
+      addNewBook(newBook);
       setModalVisibility(false);
     }
   }
@@ -57,15 +63,15 @@ const BookFormModal = ({ setModalVisibility, bookFormData, setBookFormData, addN
           <form className="new-book-form" onSubmit={(event) => handleSubmit(event)} noValidate>
             <div className="form-group">
               <label htmlFor="title-value">Title</label>
-              <input type="text" className="title-value" name="titleValue" onChange={(event) => handleChange(event)} value={bookFormData.titleValue} id="title-value" />
+              <input type="text" className="title-value" name="titleValue" onChange={(event) => handleChange(event)} value={bookFormData.titleValue} id="title-value" required />
             </div>
             <div className="form-group">
               <label htmlFor="author-value">Author</label>
-              <input type="text" className="author-value" name="authorValue" onChange={(event) => handleChange(event)} value={bookFormData.authorValue} id="author-value" />
+              <input type="text" className="author-value" name="authorValue" onChange={(event) => handleChange(event)} value={bookFormData.authorValue} id="author-value" required />
             </div>
             <div className="form-group">
               <label htmlFor="pages-value">Number of Pages</label>
-              <input type="text" className="pages-value" name="pagesValue" onChange={(event) => handleChange(event)} value={bookFormData.pagesValue} id="pages-value" />
+              <input type="text" className="pages-value" name="pagesValue" inputMode="numeric" onChange={(event) => handleChange(event)} value={bookFormData.pagesValue} id="pages-value" required />
             </div>
             <div className="form-group">
               <label className="check-label" htmlFor="read-value">Read
@@ -74,8 +80,8 @@ const BookFormModal = ({ setModalVisibility, bookFormData, setBookFormData, addN
               </label>
             </div>
             <div className="button-group">
-              <input type="submit" className="button modal-button" value="Add" />
-              <input type="button" className="button modal-button" onClick={() => setModalVisibility(false)} value="Cancel" />
+              <button type="submit" className="button modal-button">Add</button>
+              <button type="button" className="button modal-button" onClick={() => setModalVisibility(false)}>Cancel</button>
             </div>
           </form>
           {bookFormErrorMessage ? <p className="message error-message"><span className="fa fa-exclamation-circle fa-lg fa-fw"></span> {bookFormErrorMessage}</p> : null}
