@@ -1,5 +1,5 @@
 import React from 'react';
-import Book from './book';
+import Book from './Book';
 
 const ReadingList = ({ readingList, deleteBook, toggleRead }) => {
 
