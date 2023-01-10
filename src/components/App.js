@@ -60,7 +60,7 @@ const App = () => {
       <main>
         <div className="reading-list-container">
           <div className="col sidebar">
-            <button type="button" className="button add-book-button" onClick={() => setModalVisibility(true)}><span className="fas fa-plus"></span> Add Book</button>
+            <button type="button" className="button add-book-button" onClick={() => setModalVisibility(true)}><span className="fas fa-plus" aria-hidden="true"></span> Add Book</button>
           </div>
           <div className="col reading-list-content">
             <ReadingList readingList={[...readingList]} deleteBook={deleteBook} toggleRead={toggleRead} />
