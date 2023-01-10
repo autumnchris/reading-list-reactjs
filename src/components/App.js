@@ -21,6 +21,10 @@ const App = () => {
     });
   }, []);
 
+  useEffect(() => {
+    modalVisibility ? document.querySelector('body').classList.add('modal-open') : document.querySelector('body').classList.remove('modal-open');
+  }, [modalVisibility]);
+
   function renderReadingList(currentReadingList) {
     if (currentReadingList) {
       setReadingList(currentReadingList);
