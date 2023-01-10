@@ -67,7 +67,7 @@ const App = () => {
             <button type="button" className="button add-book-button" onClick={() => setModalVisibility(true)}><span className="fas fa-plus" aria-hidden="true"></span> Add Book</button>
           </div>
           <div className="col reading-list-content">
-            <ReadingList readingList={[...readingList]} deleteBook={deleteBook} toggleRead={toggleRead} />
+            {readingList.length !== 0 ? <ReadingList readingList={[...readingList]} deleteBook={deleteBook} toggleRead={toggleRead} /> : <p className="message info-message"><span className="fa fa-info-circle fa-lg fa-fw"></span> You currently have no books in your reading list. Click the Add Book button to get started.</p>}
           </div>
         </div>
         {modalVisibility ? <BookFormModal setModalVisibility={setModalVisibility} bookFormData={{ ...bookFormData }} setBookFormData={setBookFormData} addNewBook={addNewBook} /> : null}
