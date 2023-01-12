@@ -49,10 +49,18 @@ const App = () => {
   }
 
   function toggleRead(event, currentReadingList, index) { 
-    if (event.type === 'change' && !event.target.matches('input[type=checkbox]')) return;
-    if (event.keyCode === 32) event.preventDefault();
-    currentReadingList[index].readValue = !currentReadingList[index].readValue;
-    renderReadingList(currentReadingList);
+    let checkboxValue = document.getElementById(`read-${index}`).checked;
+    if (event.type === 'click' && !event.target.matches('input[type=checkbox]')) return;
+
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      checkboxValue = !checkboxValue;
+    }
+
+    if (event.keyCode === 13 || event.type === 'click') {
+      currentReadingList[index].readValue = !currentReadingList[index].readValue;
+      renderReadingList(currentReadingList);
+    }
   }
 
   return (
