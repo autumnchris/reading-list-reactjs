@@ -34,7 +34,8 @@ const BookFormModal = ({ setModalVisibility, bookFormData, setBookFormData, addN
       titleValue: bookFormData.titleValue.trim(),
       authorValue: bookFormData.authorValue.trim(),
       pagesValue: bookFormData.pagesValue.trim(),
-      readValue: bookFormData.readValue
+      readValue: bookFormData.readValue,
+      id: Date.now()
     };
 
     if (!newBook.titleValue) {
