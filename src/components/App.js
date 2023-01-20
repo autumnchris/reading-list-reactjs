@@ -135,7 +135,14 @@ const App = () => {
       <main>
         <div className="reading-list-container">
           <div className="col sidebar">
-            <button type="button" className="button add-book-button" onClick={() => setModalVisibility(true)}><span className="fas fa-plus" aria-hidden="true"></span> Add Book</button>
+            <div className="button-group">
+              <button type="button" className="button add-book-button" onClick={() => setModalVisibility(true)}><span className="fas fa-plus" aria-hidden="true"></span> Add Book</button>
+            </div>
+            <div className="reading-list-stats">
+              <div className="stat"><span className="stat-label">Books</span> {[...readingList].length}</div>
+              <div className="stat"><span className="stat-label">Read</span> {[...readingList].filter(book => book.readValue).length}</div>
+              <div className="stat"><span className="stat-label">Unread</span> {[...readingList].filter(book => !book.readValue).length}</div>
+            </div>
           </div>
           <div className="col reading-list-content">
             {readingList.length !== 0 ? <ReadingList readingList={readingList} viewableReadingList={viewableReadingList} sortFormData={{ ...sortFormData }} setSortFormData={setSortFormData} deleteBook={deleteBook} toggleRead={toggleRead} /> : <p className="message info-message"><span className="fa fa-info-circle fa-lg fa-fw" aria-hidden="true"></span> You currently have no books in your reading list. Click the Add Book button to get started.</p>}
