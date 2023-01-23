@@ -188,12 +188,16 @@ body.modal-open {
 }
 
 // Sort form styles
-.sort-form {
+.filter-sort-form {
   background: change-color($black, $lightness: 34%);
   color: change-color($teal, $lightness: 82%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
   margin-bottom: 15px;
   padding: 15px;
   label {
@@ -201,5 +205,32 @@ body.modal-open {
     font-size: 0.7rem;
     margin-bottom: 7px;
     text-transform: uppercase;
+  }
+  input {
+    border: 0;
+    border-radius: 3px;
+  }
+  .row.row-select {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-top: 20px;
+    @media all and (min-width: 450px) {
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+      flex-direction: row;
+    }
+    .form-group:not(:last-child) {
+      margin-bottom: 20px;
+      @media all and (min-width: 450px) {
+        margin-right: 20px;
+        margin-bottom: 0;
+      }
+    }
   }
 }

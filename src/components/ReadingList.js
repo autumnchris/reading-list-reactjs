@@ -1,12 +1,13 @@
 import React from 'react';
-import SortForm from './SortForm';
+import FilterSortForm from './FilterSortForm';
 import Book from './Book';
+import InfoMessage from './InfoMessage';
 
-const ReadingList = ({ readingList, viewableReadingList, sortFormData, setSortFormData, deleteBook, toggleRead }) => {
+const ReadingList = ({ readingList, viewableReadingList, filterSortFormData, setFilterSortFormData, deleteBook, toggleRead }) => {
   return (
     <React.Fragment>
-      <SortForm sortFormData={sortFormData} setSortFormData={setSortFormData} />
-      {[...viewableReadingList].map((book) => <Book key={book.id} book={book} readingList={readingList} deleteBook={deleteBook} toggleRead={toggleRead} />)}
+      <FilterSortForm filterSortFormData={filterSortFormData} setFilterSortFormData={setFilterSortFormData} />
+      {viewableReadingList.length !== 0 ? [...viewableReadingList].map((book) => <Book key={book.id} book={book} readingList={readingList} deleteBook={deleteBook} toggleRead={toggleRead} />) : <InfoMessage messageText="No results match your search specifications." />}
     </React.Fragment>
   );
 }

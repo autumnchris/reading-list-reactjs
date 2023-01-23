@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BookFormModal from './BookFormModal';
 import ReadingList from './ReadingList';
+import InfoMessage from './InfoMessage';
 import bgImage from '.././images/background-image.jpg';
 
 const App = () => {
@@ -10,7 +11,9 @@ const App = () => {
     pagesValue: '',
     readValue: false
   };
-  const initialSortFormData = {
+  const initialFilterSortFormData = {
+    searchValue: '',
+    filterReadValue: 'all',
     sortValue: 'title'
   };
 
@@ -18,7 +21,7 @@ const App = () => {
   const [viewableReadingList, setViewableReadingList] = useState([...readingList]);
   const [modalVisibility, setModalVisibility] = useState(false);
   const [bookFormData, setBookFormData] = useState({ ...initialBookFormData });
-  const [sortFormData, setSortFormData] = useState({ ...initialSortFormData });
+  const [filterSortFormData, setFilterSortFormData] = useState({ ...initialFilterSortFormData });
 
   useEffect(() => {
     window.addEventListener('click', event => {
@@ -32,7 +35,7 @@ const App = () => {
 
   useEffect(() => {
     updateViewableReadingList([...viewableReadingList]);
-  }, [sortFormData.sortValue]);
+  }, [filterSortFormData, readingList]);
 
   function renderReadingList(currentReadingList) {
     if (currentReadingList) {
@@ -45,7 +48,6 @@ const App = () => {
   function addNewBook(newBook) {
     const currentReadingList = [...readingList];
     currentReadingList.push(newBook);
-    updateViewableReadingList(currentReadingList);
     renderReadingList(currentReadingList);
     setBookFormData({ ...initialBookFormData });
   }
@@ -54,7 +56,6 @@ const App = () => {
 
     if (confirm('Are you sure you want to remove this book from your reading list?')) {
       currentReadingList = currentReadingList.filter(book => book.id !== bookID);
-      updateViewableReadingList(currentReadingList);
       renderReadingList(currentReadingList);
     }
   }
@@ -73,14 +74,43 @@ const App = () => {
         if (book.id === bookID) book.readValue = !book.readValue;
         return book;
       });
-      updateViewableReadingList(currentReadingList);
       renderReadingList(currentReadingList);
     }
   }
 
   function updateViewableReadingList(currentViewableReadingList) {
-    currentViewableReadingList = sortBooks(sortFormData.sortValue, currentViewableReadingList);
+    currentViewableReadingList = searchReadingList(filterSortFormData.searchValue, currentViewableReadingList);
+    currentViewableReadingList = filterByReadStatus(filterSortFormData.filterReadValue, currentViewableReadingList);
+    currentViewableReadingList = sortBooks(filterSortFormData.sortValue, currentViewableReadingList);
     setViewableReadingList(currentViewableReadingList);
+  }
+
+  function searchReadingList(value, currentViewableReadingList) {
+    value = value.toLowerCase();
+
+    if (value) {
+      currentViewableReadingList = [...readingList].filter(book => book.titleValue.toLowerCase().includes(value) || book.authorValue.toLowerCase().includes(value));
+    }
+    else {
+      currentViewableReadingList = [...readingList];
+    }
+    return currentViewableReadingList;
+  }
+
+  function filterByReadStatus(value, currentViewableReadingList) {
+    currentViewableReadingList = [...currentViewableReadingList].filter(book => {
+
+      if (value === 'read') {
+        return book.readValue;
+      }
+      else if (value === 'unread') {
+        return !book.readValue;
+      }
+      else {
+        return book;
+      }
+    });
+    return currentViewableReadingList;
   }
 
   function sortBooks(value, currentViewableReadingList) {
@@ -145,7 +175,7 @@ const App = () => {
             </div>
           </div>
           <div className="col reading-list-content">
-            {readingList.length !== 0 ? <ReadingList readingList={readingList} viewableReadingList={viewableReadingList} sortFormData={{ ...sortFormData }} setSortFormData={setSortFormData} deleteBook={deleteBook} toggleRead={toggleRead} /> : <p className="message info-message"><span className="fa fa-info-circle fa-lg fa-fw" aria-hidden="true"></span> You currently have no books in your reading list. Click the Add Book button to get started.</p>}
+            {readingList.length !== 0 ? <ReadingList readingList={readingList} viewableReadingList={viewableReadingList} filterSortFormData={{ ...filterSortFormData }} setFilterSortFormData={setFilterSortFormData} deleteBook={deleteBook} toggleRead={toggleRead} /> : <InfoMessage messageText="You currently have no books in your reading list. Click the Add Book button to get started." />}
           </div>
         </div>
         {modalVisibility ? <BookFormModal setModalVisibility={setModalVisibility} bookFormData={{ ...bookFormData }} setBookFormData={setBookFormData} addNewBook={addNewBook} /> : null}
