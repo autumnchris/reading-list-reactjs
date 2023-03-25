@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import BookFormModal from './BookFormModal';
 import ReadingList from './ReadingList';
 import InfoMessage from './InfoMessage';
-import bgImage from '.././images/background-image.jpg';
+import bgImage from '../assets/images/background-image.jpg';
 
 const App = () => {
   const initialBookFormData = {
