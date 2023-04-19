@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ErrorMessage from './ErrorMessage';
 
 const BookFormModal = ({ setModalVisibility, bookFormData, setBookFormData, addNewBook }) => {
   const [bookFormErrorMessage, setBookFormErrorMessage] = useState('');
@@ -16,13 +17,13 @@ const BookFormModal = ({ setModalVisibility, bookFormData, setBookFormData, addN
   function handleKeyDown(event, id) {
     let checkboxValue = document.getElementById(id).checked;
     
-    if (event.keyCode === 13) {
+    if (event.key === 'Enter') {
       event.preventDefault();
       checkboxValue = !checkboxValue;
       setBookFormData(prevBookFormData => {
         return {
           ...prevBookFormData,
-          'readValue': checkboxValue
+          'read': checkboxValue
         };
       });
     }
@@ -31,23 +32,23 @@ const BookFormModal = ({ setModalVisibility, bookFormData, setBookFormData, addN
   function handleSubmit(event) {
     event.preventDefault();
     const newBook = {
-      titleValue: bookFormData.titleValue.trim(),
-      authorValue: bookFormData.authorValue.trim(),
-      pagesValue: bookFormData.pagesValue.trim(),
-      readValue: bookFormData.readValue,
+      title: bookFormData.title.trim(),
+      author: bookFormData.author.trim(),
+      pages: bookFormData.pages.trim(),
+      read: bookFormData.read,
       id: Date.now()
     };
 
-    if (!newBook.titleValue) {
+    if (!newBook.title) {
       setBookFormErrorMessage('A book title is required to add a new book.');
     }
-    else if (!newBook.authorValue) {
+    else if (!newBook.author) {
       setBookFormErrorMessage('An author is required to add a new book.');
     }
-    else if (!newBook.pagesValue) {
+    else if (!newBook.pages) {
       setBookFormErrorMessage('The number of pages is required to add a new book.');
     }
-    else if (isNaN(newBook.pagesValue) || newBook.pagesValue <= 0) {
+    else if (isNaN(newBook.pages) || newBook.pages <= 0) {
       setBookFormErrorMessage('The number of pages must be a number greater than 0.');
     }
     else {
@@ -64,19 +65,19 @@ const BookFormModal = ({ setModalVisibility, bookFormData, setBookFormData, addN
           <form className="new-book-form" onSubmit={(event) => handleSubmit(event)} noValidate>
             <div className="form-group">
               <label htmlFor="title-value">Title</label>
-              <input type="text" className="title-value" name="titleValue" onChange={(event) => handleChange(event)} value={bookFormData.titleValue} id="title-value" required />
+              <input type="text" className="title-value" name="title" onChange={(event) => handleChange(event)} value={bookFormData.title} id="title-value" required />
             </div>
             <div className="form-group">
               <label htmlFor="author-value">Author</label>
-              <input type="text" className="author-value" name="authorValue" onChange={(event) => handleChange(event)} value={bookFormData.authorValue} id="author-value" required />
+              <input type="text" className="author-value" name="author" onChange={(event) => handleChange(event)} value={bookFormData.author} id="author-value" required />
             </div>
             <div className="form-group">
               <label htmlFor="pages-value">Number of Pages</label>
-              <input type="text" className="pages-value" name="pagesValue" inputMode="numeric" onChange={(event) => handleChange(event)} value={bookFormData.pagesValue} id="pages-value" required />
+              <input type="text" className="pages-value" name="pages" inputMode="numeric" onChange={(event) => handleChange(event)} value={bookFormData.pages} id="pages-value" required />
             </div>
             <div className="form-group">
               <label className="check-label" htmlFor="read-value">Read
-                <input type="checkbox" name="readValue" onChange={(event) => handleChange(event)} tabIndex="-1" id="read-value" checked={bookFormData.readValue} />
+                <input type="checkbox" name="read" onChange={(event) => handleChange(event)} tabIndex="-1" id="read-value" checked={bookFormData.read} />
                 <span className="checkmark" tabIndex="0" onKeyDown={(event) => handleKeyDown(event, 'read-value')}></span>
               </label>
             </div>
@@ -85,7 +86,7 @@ const BookFormModal = ({ setModalVisibility, bookFormData, setBookFormData, addN
               <button type="button" className="button modal-button" onClick={() => setModalVisibility(false)}>Cancel</button>
             </div>
           </form>
-          {bookFormErrorMessage ? <p className="message error-message"><span className="fa fa-exclamation-circle fa-lg fa-fw"></span> {bookFormErrorMessage}</p> : null}
+          {bookFormErrorMessage && <ErrorMessage messageText={bookFormErrorMessage} />}
         </div>
       </div>
     </div>

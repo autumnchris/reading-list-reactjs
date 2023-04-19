@@ -1,25 +1,26 @@
 import React from 'react';
+import getReadingList from '../utils/getReadingList';
 
-const Book = ({ book, readingList, deleteBook, toggleRead }) => {
+const Book = ({ book, deleteBook, toggleRead }) => {
 
   return (
     <div className="book-card">
       <div className="row">
-        <div className="title">{book.titleValue}</div>
+        <div className="title">{book.title}</div>
         <div className="button-group">
-          <button type="button" className="button delete-book-button" onClick={() => deleteBook(readingList, book.id)} aria-label="delete book" title="Delete">
+          <button type="button" className="button delete-book-button" onClick={() => deleteBook(getReadingList(), book.id)} aria-label="delete book" title="Delete">
             <span className="fa fa-trash-alt fa-sm delete-icon"></span>
           </button>
         </div>
       </div>
       <div className="row">
-        <div className="book-info author"><span className="book-info-label">by</span> {book.authorValue}</div>
-        <div className="book-info pages"><span className="book-info-label">Pages</span> {book.pagesValue}</div>
+        <div className="book-info author"><span className="book-info-label">by</span> {book.author}</div>
+        <div className="book-info pages"><span className="book-info-label">Pages</span> {book.pages}</div>
         <form noValidate>
           <div className="form-group">
             <label className="check-label" htmlFor={`read-${book.id}`}>Read
-              <input type="checkbox" name="readValue" onChange={(event) => toggleRead(event, readingList, book.id)} tabIndex="-1" id={`read-${book.id}`} checked={book.readValue} />
-              <span className="checkmark" tabIndex="0" onKeyDown={(event) => toggleRead(event, readingList, book.id)}></span>
+              <input type="checkbox" name="readValue" onChange={(event) => toggleRead(event, getReadingList(), book.id)} tabIndex="-1" id={`read-${book.id}`} checked={book.read} />
+              <span className="checkmark" tabIndex="0" onKeyDown={(event) => toggleRead(event, getReadingList(), book.id)}></span>
             </label>
           </div>
         </form>
