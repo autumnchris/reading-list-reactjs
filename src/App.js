@@ -23,7 +23,11 @@ const App = () => {
     window.addEventListener('click', event => {
       if (event.target.id === 'modal') setModalVisibility(false);
     });
-  }, []);
+
+    window.addEventListener('keydown', event => {
+      if (modalVisibility && event.key === 'Escape') setModalVisibility(false);
+    });
+  }, [modalVisibility]);
 
   useEffect(() => {
     modalVisibility ? document.querySelector('body').classList.add('modal-open') : document.querySelector('body').classList.remove('modal-open');
