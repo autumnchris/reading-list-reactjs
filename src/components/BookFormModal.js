@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import ErrorMessage from './ErrorMessage';
+import getReadingList from '../utils/getReadingList';
 
-const BookFormModal = ({ setModalVisibility, bookFormData, setBookFormData, addNewBook }) => {
+const BookFormModal = ({ bookFormType, bookFormData, setBookFormData, toggleFormModal, editBook, addNewBook }) => {
   const [bookFormErrorMessage, setBookFormErrorMessage] = useState('');
 
   function handleChange(event) {
@@ -52,15 +53,21 @@ const BookFormModal = ({ setModalVisibility, bookFormData, setBookFormData, addN
       setBookFormErrorMessage('The number of pages must be a number greater than 0.');
     }
     else {
-      addNewBook(newBook);
-      setModalVisibility(false);
+
+      if (bookFormType === 'edit') {
+        editBook(bookFormData, getReadingList(), bookFormData.id);
+      }
+      else if ('add') {
+        addNewBook(newBook);
+      }
+      toggleFormModal(false);
     }
   }
 
   return (
     <div className="modal" id="modal">
       <div className="modal-content">
-        <div className="modal-header">Add New Book</div>
+        <div className="modal-header">{bookFormType === 'edit' ? 'Edit Book' : 'Add New Book'}</div>
         <div className="modal-body">
           <form className="new-book-form" onSubmit={(event) => handleSubmit(event)} noValidate>
             <div className="form-group">
@@ -82,8 +89,8 @@ const BookFormModal = ({ setModalVisibility, bookFormData, setBookFormData, addN
               </label>
             </div>
             <div className="button-group">
-              <button type="submit" className="button modal-button">Add</button>
-              <button type="button" className="button modal-button" onClick={() => setModalVisibility(false)}>Cancel</button>
+              <button type="submit" className="button modal-button">Save</button>
+              <button type="button" className="button modal-button" onClick={() => toggleFormModal(false)}>Cancel</button>
             </div>
           </form>
           {bookFormErrorMessage && <ErrorMessage messageText={bookFormErrorMessage} />}

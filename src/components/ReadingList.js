@@ -3,7 +3,7 @@ import FilterSortForm from './FilterSortForm';
 import Book from './Book';
 import InfoMessage from './InfoMessage';
 
-const ReadingList = ({ readingList, deleteBook, toggleRead }) => {
+const ReadingList = ({ readingList, deleteBook, toggleRead, toggleFormModal }) => {
   const initialFilterSortFormData = {
     searchValue: '',
     filterReadValue: 'all',
@@ -93,7 +93,7 @@ const ReadingList = ({ readingList, deleteBook, toggleRead }) => {
   return (
     <React.Fragment>
       <FilterSortForm filterSortFormData={filterSortFormData} setFilterSortFormData={setFilterSortFormData} />
-      {viewableReadingList.length !== 0 ? <div className="reading-list">{[...viewableReadingList].map(book => <Book key={book.id} book={book} deleteBook={deleteBook} toggleRead={toggleRead} />)}</div> : <InfoMessage messageText="No results match your search specifications." />}
+      {viewableReadingList.length !== 0 ? <div className="reading-list">{[...viewableReadingList].map(book => <Book key={book.id} book={book} deleteBook={deleteBook} toggleRead={toggleRead} toggleFormModal={toggleFormModal} />)}</div> : <InfoMessage messageText="No results match your search specifications." />}
     </React.Fragment>
   );
 }

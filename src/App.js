@@ -12,30 +12,51 @@ const App = () => {
     title: '',
     author: '',
     pages: '',
-    read: false
+    read: false,
+    id: null
   };
 
   const [readingList, setReadingList] = useState([...getReadingList()]);
   const [modalVisibility, setModalVisibility] = useState(false);
+  const [bookFormType, setBookFormType] = useState(null);
   const [bookFormData, setBookFormData] = useState({ ...initialBookFormData });
 
   useEffect(() => {
     window.addEventListener('click', event => {
-      if (event.target.id === 'modal') setModalVisibility(false);
+      if(event.target.id === 'modal') toggleFormModal(false);
     });
 
     window.addEventListener('keydown', event => {
-      if (modalVisibility && event.key === 'Escape') setModalVisibility(false);
+      if(modalVisibility && event.key === 'Escape') toggleFormModal(false);
     });
-  }, [modalVisibility]);
 
-  useEffect(() => {
     modalVisibility ? document.querySelector('body').classList.add('modal-open') : document.querySelector('body').classList.remove('modal-open');
   }, [modalVisibility]);
 
   function addNewBook(newBook) {
     const readingListData = [...readingList];
     readingListData.push(newBook);
+    setReadingList(readingListData);
+    getReadingList(readingListData);
+    setBookFormData({ ...initialBookFormData });
+  }
+
+  function editBook(editBookFormData, readingListData, bookID) {
+    readingListData = readingListData.map(book => {
+
+      if (book.id === bookID) {
+        return {
+          ...book,
+          title: editBookFormData.title,
+          author: editBookFormData.author,
+          pages: editBookFormData.pages,
+          read: editBookFormData.read
+        };
+      }
+      else {
+        return book;
+      }
+    });
     setReadingList(readingListData);
     getReadingList(readingListData);
     setBookFormData({ ...initialBookFormData });
@@ -69,17 +90,23 @@ const App = () => {
     }
   }
 
+  function toggleFormModal(modalVisibilityStatus, type = null, currentBookFormData = { ...initialBookFormData }) {
+    setBookFormType(type);
+    setBookFormData({ ...currentBookFormData });
+    setModalVisibility(modalVisibilityStatus);
+  }
+
   return (
     <React.Fragment>
       <Header />
       <main>
         <div className="reading-list-container">
-          <Sidebar setModalVisibility={setModalVisibility} />
+          <Sidebar addBookFormData={initialBookFormData} toggleFormModal={toggleFormModal} />
           <div className="col reading-list-content">
-            {readingList.length !== 0 ? <ReadingList readingList={readingList} deleteBook={deleteBook} toggleRead={toggleRead} /> : <InfoMessage messageText="You currently have no books in your reading list. Click the Add Book button to get started." />}
+            {readingList.length !== 0 ? <ReadingList readingList={readingList} deleteBook={deleteBook} toggleRead={toggleRead} toggleFormModal={toggleFormModal} /> : <InfoMessage messageText="You currently have no books in your reading list. Click the Add Book button to get started." />}
           </div>
         </div>
-        {modalVisibility ? <BookFormModal setModalVisibility={setModalVisibility} bookFormData={bookFormData} setBookFormData={setBookFormData} addNewBook={addNewBook} /> : null}
+        {modalVisibility ? <BookFormModal bookFormType={bookFormType} bookFormData={bookFormData} setBookFormData={setBookFormData} toggleFormModal={toggleFormModal} editBook={editBook} addNewBook={addNewBook} /> : null}
       </main>
       <Footer />
     </React.Fragment>

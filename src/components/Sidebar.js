@@ -1,11 +1,11 @@
 import React from 'react';
 import getReadingList from '../utils/getReadingList';
 
-const Sidebar = ({ setModalVisibility }) => {
+const Sidebar = ({ addBookFormData, toggleFormModal }) => {
   return (
     <div className="col sidebar">
       <div className="button-group">
-        <button type="button" className="button add-book-button" onClick={() => setModalVisibility(true)}><span className="fas fa-plus" aria-hidden="true"></span> Add Book</button>
+        <button type="button" className="button add-book-button" onClick={() => toggleFormModal(true, 'add', addBookFormData)}><span className="fas fa-plus fa-sm" aria-hidden="true"></span> Add Book</button>
       </div>
       <div className="reading-list-stats">
         <div className="stat"><span className="stat-label">Books</span> {getReadingList().length}</div>

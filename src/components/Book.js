@@ -1,15 +1,25 @@
 import React from 'react';
 import getReadingList from '../utils/getReadingList';
 
-const Book = ({ book, deleteBook, toggleRead }) => {
+const Book = ({ book, deleteBook, toggleRead, toggleFormModal }) => {
+  const editBookFormData = {
+    title: book.title,
+    author: book.author,
+    pages: book.pages,
+    read: book.read,
+    id: book.id
+  };
 
   return (
     <div className="book-card">
       <div className="row">
         <div className="title">{book.title}</div>
         <div className="button-group">
+          <button type="button" className="button edit-book-button" onClick={() => toggleFormModal(true, 'edit', editBookFormData)} aria-label="edit book" title="Edit">
+            <span className="fa fa-pencil-alt fa-sm fa-fw icon"></span>
+          </button>
           <button type="button" className="button delete-book-button" onClick={() => deleteBook(getReadingList(), book.id)} aria-label="delete book" title="Delete">
-            <span className="fa fa-trash-alt fa-sm delete-icon"></span>
+            <span className="fa fa-trash-alt fa-sm fa-fw icon"></span>
           </button>
         </div>
       </div>
