@@ -9,6 +9,10 @@ Inspired by the [Library assignment](https://www.theodinproject.com/lessons/node
 ## Built With
 * [React.js](https://reactjs.org)
 * [Sass](http://sass-lang.com)
+* JavaScript
+* CSS3
+* HTML5
+* [Node.js](https://nodejs.org/en)
 * [Webpack](https://webpack.js.org)
 * LocalStorage
 * [Babel](https://babeljs.io)
