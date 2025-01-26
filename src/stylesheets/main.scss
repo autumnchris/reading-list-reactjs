@@ -63,6 +63,10 @@
     background: change-color($teal, $lightness: 18%);
     text-decoration: none;
   }
+  &.add-book-button .icon {
+    padding-top: 2px;
+    vertical-align: top;
+  }
 }
 
 // Sidebar styles
