@@ -58,10 +58,10 @@
   letter-spacing: 1px;
   line-height: normal;
   padding: 5px 8px;
+  text-decoration: none;
   width: auto;
   &:hover {
     background: change-color($teal, $lightness: 18%);
-    text-decoration: none;
   }
   &.add-book-button .icon {
     padding-top: 2px;
