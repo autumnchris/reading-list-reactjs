@@ -72,19 +72,19 @@ const BookFormModal = ({ bookFormType, bookFormData, setBookFormData, toggleForm
           <form className="new-book-form" onSubmit={(event) => handleSubmit(event)} noValidate>
             <div className="form-group">
               <label htmlFor="title-value">Title</label>
-              <input type="text" className="title-value" name="title" onChange={(event) => handleChange(event)} value={bookFormData.title} id="title-value" required />
+              <input type="text" className="title-value" name="title" onChange={(event) => handleChange(event)} value={bookFormData.title} id="title-value" autoComplete="off" required />
             </div>
             <div className="form-group">
               <label htmlFor="author-value">Author</label>
-              <input type="text" className="author-value" name="author" onChange={(event) => handleChange(event)} value={bookFormData.author} id="author-value" required />
+              <input type="text" className="author-value" name="author" onChange={(event) => handleChange(event)} value={bookFormData.author} id="author-value" autoComplete="off" required />
             </div>
             <div className="form-group">
               <label htmlFor="pages-value">Number of Pages</label>
-              <input type="text" className="pages-value" name="pages" inputMode="numeric" onChange={(event) => handleChange(event)} value={bookFormData.pages} id="pages-value" required />
+              <input type="text" className="pages-value" name="pages" inputMode="numeric" onChange={(event) => handleChange(event)} value={bookFormData.pages} id="pages-value" autoComplete="off" required />
             </div>
             <div className="form-group">
               <label className="check-label" htmlFor="read-value">Read
-                <input type="checkbox" name="read" onChange={(event) => handleChange(event)} tabIndex="-1" id="read-value" checked={bookFormData.read} />
+                <input type="checkbox" name="read" onChange={(event) => handleChange(event)} tabIndex="-1" id="read-value" autoComplete="off" checked={bookFormData.read} />
                 <span className="checkmark" tabIndex="0" onKeyDown={(event) => handleKeyDown(event, 'read-value')}></span>
               </label>
             </div>

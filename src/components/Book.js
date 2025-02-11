@@ -29,7 +29,7 @@ const Book = ({ book, deleteBook, toggleRead, toggleFormModal }) => {
         <form noValidate>
           <div className="form-group">
             <label className="check-label" htmlFor={`read-${book.id}`}>Read
-              <input type="checkbox" name="readValue" onChange={(event) => toggleRead(event, getReadingList(), book.id)} tabIndex="-1" id={`read-${book.id}`} checked={book.read} />
+              <input type="checkbox" name="readValue" onChange={(event) => toggleRead(event, getReadingList(), book.id)} tabIndex="-1" id={`read-${book.id}`} autoComplete="off" checked={book.read} />
               <span className="checkmark" tabIndex="0" onKeyDown={(event) => toggleRead(event, getReadingList(), book.id)}></span>
             </label>
           </div>
