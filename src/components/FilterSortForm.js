@@ -12,7 +12,7 @@ const FilterSortForm = ({ filterSortFormData, setFilterSortFormData }) => {
   }
 
   return (
-    <form className="filter-sort-form" onSubmit={(event) => { event.preventDefault(); }}>
+    <form className="filter-sort-form" onSubmit={(event) => { event.preventDefault(); }} noValidate>
       <div className="row row-search">
         <div className="form-group">
           <label htmlFor="search-value">Filter by Keyword</label>
