@@ -64,7 +64,6 @@
     background: change-color($teal, $lightness: 18%);
   }
   &.add-book-button .icon {
-    padding-top: 2px;
     vertical-align: top;
   }
 }
@@ -150,7 +149,7 @@
         font-family: $title-font;
         font-size: 1.2rem;
         font-style: italic;
-        font-weight: 800;
+        font-weight: 400;
         letter-spacing: 2px;
         padding: 5px;
       }
