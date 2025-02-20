@@ -15,10 +15,10 @@ const Book = ({ book, deleteBook, toggleRead, toggleFormModal }) => {
       <div className="row">
         <div className="title">{book.title}</div>
         <div className="button-group">
-          <button type="button" className="button edit-book-button" onClick={() => toggleFormModal(true, 'edit', editBookFormData)} aria-label="edit book" title="Edit">
+          <button type="button" className="button edit-book-button" onClick={() => toggleFormModal(true, 'edit', editBookFormData)} aria-label={`edit book ${book.title} by ${book.author}`} title="Edit">
             <span className="fa-solid fa-pencil fa-sm fa-fw icon"></span>
           </button>
-          <button type="button" className="button delete-book-button" onClick={() => deleteBook(getReadingList(), book.id)} aria-label="delete book" title="Delete">
+          <button type="button" className="button delete-book-button" onClick={() => deleteBook(getReadingList(), book.id)} aria-label={`delete book ${book.title} by ${book.author}`} title="Delete">
             <span className="fa-solid fa-trash fa-sm fa-fw icon"></span>
           </button>
         </div>
