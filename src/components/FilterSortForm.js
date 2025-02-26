@@ -16,7 +16,7 @@ const FilterSortForm = ({ filterSortFormData, setFilterSortFormData }) => {
       <div className="row row-search">
         <div className="form-group">
           <label htmlFor="search-value">Filter by Keyword</label>
-          <input type="text" name="searchValue" onChange={(event) => handleChange(event)} value={filterSortFormData.searchValue} placeholder="Find a book..." id="search-value" autoComplete="off" />
+          <input type="text" name="searchValue" onChange={(event) => handleChange(event)} value={filterSortFormData.searchValue} placeholder="Find a book..." id="search-value" autoComplete="off" autoCapitalize="off" />
         </div>
       </div>
       <div className="row row-select">
