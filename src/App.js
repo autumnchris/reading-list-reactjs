@@ -75,12 +75,12 @@ const App = () => {
     let checkboxValue = document.getElementById(`read-${bookID}`).checked;
     if (event.type === 'click' && !event.target.matches('input[type=checkbox]')) return;
 
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       checkboxValue = !checkboxValue;
     }
 
-    if (event.key === 'Enter' || event.type === 'change') {
+    if (event.key === 'Enter' || event.key === ' ' || event.type === 'change') {
       readingListData = readingListData.map(book => {
         if (book.id === bookID) book.read = !book.read;
         return book;

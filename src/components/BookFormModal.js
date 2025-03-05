@@ -18,7 +18,7 @@ const BookFormModal = ({ bookFormType, bookFormData, setBookFormData, toggleForm
   function handleKeyDown(event, id) {
     let checkboxValue = document.getElementById(id).checked;
     
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       checkboxValue = !checkboxValue;
       setBookFormData(prevBookFormData => {
